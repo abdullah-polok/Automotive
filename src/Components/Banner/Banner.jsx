@@ -9,15 +9,16 @@ const Banner = () => {
       .then(data => setBrands(data))
   }, [])
 
-  // console.log(brands[0].image)
+  console.log(brands.map(brand => brand.image))
+
   return (
     <div className="mt-10">
-      {/* <div className="carousel w-full">
+      <div className="carousel w-full">
         <div id="item1" className="carousel-item w-full">
-          <img src={brands[1].image} className="w-full" />
+          <img src={brands[1]?.image} className="w-full" />
         </div>
         <div id="item2" className="carousel-item w-full">
-          <img src={brands[2].image} className="w-full" />
+          <img src={brands[2]?.image} className="w-full" />
         </div>
         <div id="item3" className="carousel-item w-full">
           <img src={brands[3].image} className="w-full" />
@@ -31,7 +32,7 @@ const Banner = () => {
         <a href="#item2" className="btn btn-xs">2</a>
         <a href="#item3" className="btn btn-xs">3</a>
         <a href="#item4" className="btn btn-xs">4</a>
-      </div> */}
+      </div>
     </div>
   );
 };
