@@ -1,12 +1,29 @@
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { useContext } from "react";
-import { Link } from 'react-router-dom'
-
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 const Login = () => {
-
+    const [loginMes, setLoginMes] = useState('')
     const userInfo = useContext(AuthContext)
-    const { signInUser } = userInfo
-    // const navigate = useNavigate()
+    const { signInUser, loginUserPop } = userInfo
+
+    const navigate = useNavigate()
+
+    const handlePopUp = () => {
+        loginUserPop()
+            .then(user => {
+                console.log(user.user)
+                navigate('/')
+            })
+            .catch(err => {
+                console.log(err.message)
+                setLoginMes(() => {
+                    toast(err.message)
+                    return err.message
+                })
+            })
+    }
+
     const handleSignIn = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -18,6 +35,8 @@ const Login = () => {
         signInUser(email, password)
             .then(res => {
                 console.log(res.user)
+                e.target.reset()
+                navigate('/')
 
             })
             .catch(err => {
@@ -53,6 +72,7 @@ const Login = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                     </form>
+                    <button onClick={handlePopUp}>Login via Google</button>
                     <p className="p-5">Do not have a account?<Link to={'/register'} className="text-blue-500">Register</Link></p>
                 </div>
             </div>

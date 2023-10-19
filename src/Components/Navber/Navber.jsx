@@ -1,8 +1,16 @@
-import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 const Navber = () => {
 
     const [carts, setCarts] = useState([]);
+    const userInfo = useContext(AuthContext)
+
+    const { user, logoutUser } = userInfo
+
+    const handleUser = () => {
+        logoutUser()
+    }
 
     useEffect(() => {
         fetch(`http://localhost:5000/carts`)
@@ -14,9 +22,15 @@ const Navber = () => {
 
     const navlinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/addproduct'>Add Product</NavLink></li>
         <li><NavLink to='/allproduct'>All Products</NavLink></li>
-        <li><NavLink to='/activities'>Activities</NavLink></li>
+        {
+            user &&
+            <>
+                <li><NavLink to='/addproduct'>Add Product</NavLink></li>
+                <li><NavLink to='/activities'>Activities</NavLink></li>
+            </>
+
+        }
     </>
 
     return (
@@ -42,26 +56,39 @@ const Navber = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <NavLink to="/carts">
-                    <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle">
-                            <div className="indicator">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                <span className="badge badge-sm indicator-item">{carts?.length}</span>
-                            </div>
-                        </label>
-                    </div>
-                </NavLink>
-                <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                {
+                    user &&
+                    <NavLink to="/carts">
+                        <div className="dropdown dropdown-end">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle">
+                                <div className="indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                    <span className="badge badge-sm indicator-item">{carts?.length}</span>
+                                </div>
+                            </label>
                         </div>
-                    </label>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    </NavLink>
+                }
+                <div className="navbar-end">
+                    {
+                        user ?
+                            <div className="flex">
+                                <button className="btn btn-outline btn-xs mr-2 hidden md:block lg:block">{user.displayName ? user.displayName : user.email}</button>
+                                <div className="avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img src={user.photoURL && user.photoURL} />
+                                    </div>
+                                </div>
+                                <Link><button onClick={handleUser} className="btn btn-sm">Logout</button></Link>
 
-                        <li><NavLink to={'/login'}>Login</NavLink></li>
-                    </ul>
+                            </div>
+                            :
+                            <>
+                                <Link to={'/login'}><button className="btn mr-3">Login</button></Link>
+                                <Link to={'/register'}><button className="btn">Register</button></Link>
+                            </>
+
+                    }
                 </div>
             </div>
         </div>
