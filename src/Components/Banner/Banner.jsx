@@ -21,10 +21,10 @@ const Banner = () => {
           <img src={brands[2]?.image} className="w-full" />
         </div>
         <div id="item3" className="carousel-item w-full">
-          <img src={brands[3].image} className="w-full" />
+          <img src={brands[3]?.image} className="w-full" />
         </div>
         <div id="item4" className="carousel-item w-full">
-          <img src={brands[4].image} className="w-full" />
+          <img src={brands[4]?.image} className="w-full" />
         </div>
       </div>
       <div className="flex justify-center w-full py-2 gap-2">
