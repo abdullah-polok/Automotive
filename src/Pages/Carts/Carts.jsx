@@ -1,13 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 const Carts = () => {
-    const [carts, setCarts] = useState([]);
-
-    useEffect(() => {
-        fetch(`http://localhost:5000/carts`)
-            .then(res => res.json())
-            .then(data => setCarts(data));
-    }, [])
-    console.log(carts)
+    const loadedCart = useLoaderData()
+    const [carts, setCarts] = useState(loadedCart);
 
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/carts/${id}`, {
@@ -18,7 +13,7 @@ const Carts = () => {
             })
             .then(data => {
                 console.log(data)
-
+                console.log("Deleted successfully")
                 ///remove the user from the user interface and set the remain user after delete
                 const remainningCarts = carts.filter(carts._id !== id)
                 setCarts(remainningCarts)
@@ -44,7 +39,8 @@ const Carts = () => {
                             <td>
                                 <img src={cart.image} alt="cars" className='w-[100px]' />
                             </td>
-                            <td>{cart.name}</td>                            <td>{cart.type}</td>
+                            <td>{cart.name}</td>
+                            <td>{cart.type}</td>
                             <td>{cart.price}</td>
                             <th>
                                 <button onClick={() => handleDelete(cart._id)} className="btn  btn-secondary btn-base">X</button>
