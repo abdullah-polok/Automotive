@@ -1,7 +1,7 @@
 import { toast, ToastContainer } from "react-toastify";
 
 const AddProduct = () => {
-
+    let newCar;
     const handleAddCar = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -12,9 +12,11 @@ const AddProduct = () => {
         const ratings = form.rating.value
         const image = form.photo.value;
 
-        const newCar = { name, brand_name, type, price, ratings, image }
+        newCar = { name, brand_name, type, price, ratings, image }
 
         console.log(newCar)
+
+        ////Post (create) data and send into the 
         fetch(`http://localhost:5000/cars`, {
             method: 'POST',
             headers: {
@@ -29,7 +31,28 @@ const AddProduct = () => {
             })
 
 
+        ///
+
+        fetch('http://localhost:5000/cars', {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newCar)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                toast("Car data updated successfully")
+            })
     }
+
+    ////
+    // const handleUpdate = () => {
+    //     console.log("clcick")
+
+    // }
+
     return (
         <div className="bg-[#F4F3F0] p-24">
             <h2 className="text-3xl font-bold text-center">Add Cars</h2>
@@ -92,7 +115,8 @@ const AddProduct = () => {
                     </div>
                 </div>
                 <div className="text-center">
-                    <button className="btn mt-4 mx-auto " type="submit">Add Car</button>
+                    <button className="btn mt-4 mx-auto mr-4" type="submit">Add Car</button>
+                    <button className="btn mt-4 mx-auto " type="submit">Submit update</button>
                     <ToastContainer></ToastContainer>
                 </div>
             </form>

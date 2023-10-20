@@ -9,8 +9,6 @@ const Banner = () => {
       .then(data => setBrands(data))
   }, [])
 
-  console.log(brands.map(brand => brand.image))
-
   return (
     <div className="mt-10">
       <div className="carousel w-full">

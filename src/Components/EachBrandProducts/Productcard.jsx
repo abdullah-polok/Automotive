@@ -14,7 +14,7 @@ const Productcard = ({ car }) => {
                 <p className='text-sm mb-0 mt-0'>{details}</p>
                 <p className='text-sm mb-0 mt-0'>{ratings}</p>
                 <div className="card-actions justify-end">
-                    <button className="btn"><FaUpload></FaUpload></button>
+                    <Link to='/addproduct'><button className='btn'><FaUpload></FaUpload></button></Link>
                     <Link to='/productdetails' state={{ car: car }}><button className="btn"><CgDetailsMore></CgDetailsMore></button></Link>
                 </div>
             </div>
