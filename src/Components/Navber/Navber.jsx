@@ -14,7 +14,7 @@ const Navber = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/carts`)
+        fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/carts`)
             .then(res => res.json())
             .then(data => setCarts(data));
     }, [])
@@ -24,6 +24,7 @@ const Navber = () => {
     const navlinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allproduct'>All Products</NavLink></li>
+        <li className="block md:hidden lg:hidden" ><NavLink to={'/register'}>Register</NavLink></li>
         {
             user &&
             <>
@@ -74,20 +75,28 @@ const Navber = () => {
                     {
                         user ?
                             <div className="flex">
-                                <button className="btn btn-outline btn-xs mr-2 hidden md:block lg:block">{user.displayName ? user.displayName : user.email}</button>
+                                <div className="flex flex-col items-center mr-2">
+                                    <p className="outline-1 rounded-lg text-xs hidden md:block lg:block">{user.displayName ? user.displayName : user.email}</p>
+                                    <div className="block md:flex lg:flex items-center">
+                                        <Link><button onClick={handleUser} className="btn btn-xs">Logout</button></Link>
+                                        {/* <input type="checkbox" className="toggle] h-[10px" checked /> */}
+                                        <div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
                                 <div className="avatar">
                                     <div className="w-10 rounded-full">
                                         <img src={user.photoURL && user.photoURL} />
                                     </div>
                                 </div>
-                                <Link><button onClick={handleUser} className="btn btn-sm">Logout</button></Link>
-
                             </div>
                             :
-                            <>
+                            <div className="flex">
                                 <Link to={'/login'}><button className="btn mr-3">Login</button></Link>
-                                <Link to={'/register'}><button className="btn">Register</button></Link>
-                            </>
+                                <Link to={'/register'}><button className="btn hidden md:block lg:block">Register</button></Link>
+                            </div>
 
                     }
                 </div>

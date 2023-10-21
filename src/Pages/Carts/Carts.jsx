@@ -3,10 +3,9 @@ import { useLoaderData } from "react-router-dom";
 const Carts = () => {
     const loadedCart = useLoaderData()
     const [carts, setCarts] = useState(loadedCart);
-
     const handleDelete = (id) => {
         console.log(id)
-        fetch(`http://localhost:5000/carts/${id}`, {
+        fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/carts/${id}`, {
             method: 'DELETE'
         })
             .then(res => {
@@ -14,11 +13,13 @@ const Carts = () => {
             })
             .then(data => {
                 console.log(data)
+                // if (data.deletedCount > 0) {
                 console.log("Deleted successfully")
                 ///remove the user from the user interface and set the remain user after delete
                 const remainningCarts = carts.filter(carts._id !== id)
                 setCarts(remainningCarts)
                 console.log(remainningCarts)
+                // }
 
             })
     }
@@ -45,7 +46,7 @@ const Carts = () => {
                             <td>{cart.type}</td>
                             <td>{cart.price}</td>
                             <th>
-                                <button onClick={() => handleDelete(cart?._id)} className="btn  btn-secondary btn-base">X</button>
+                                <button onClick={() => handleDelete(cart._id)} className="btn  btn-secondary btn-base">X</button>
                             </th>
                         </tr>)
                     }

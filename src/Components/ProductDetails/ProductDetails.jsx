@@ -11,7 +11,7 @@ const ProductDetails = () => {
     }
     const cartCar = state.car
     ///send add cart data to the database
-    fetch(`http://localhost:5000/carts`, {
+    fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/carts`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

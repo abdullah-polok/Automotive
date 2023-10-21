@@ -10,6 +10,7 @@ import Error from "../Pages/Error/Error";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import UpdateForm from "../Pages/Updateform/UpdateForm";
 import PrivateRouter from "../PrivateRouter/PrivateRouter";
 
 
@@ -29,7 +30,12 @@ const router = createBrowserRouter([
             {
                 path: '/allproduct',
                 element: <AllProducts></AllProducts>,
-                loader: () => fetch('http://localhost:5000/cars')
+                loader: () => fetch('https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/cars')
+            },
+            {
+                path: '/updateform/:id',
+                element: <PrivateRouter><UpdateForm></UpdateForm></PrivateRouter>,
+                loader: ({ params }) => fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/cars/${params.id}`)
             },
             {
                 path: '/activities',
@@ -54,7 +60,7 @@ const router = createBrowserRouter([
             {
                 path: '/carts',
                 element: <PrivateRouter><Carts></Carts></PrivateRouter>,
-                loader: () => fetch(`http://localhost:5000/carts`)
+                loader: () => fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/carts`)
             }
 
             , {

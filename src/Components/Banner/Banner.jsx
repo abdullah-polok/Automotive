@@ -4,7 +4,7 @@ const Banner = () => {
   const [brands, setBrands] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:5000/brands')
+    fetch('https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/brands')
       .then(res => res.json())
       .then(data => setBrands(data))
   }, [])
