@@ -9,7 +9,7 @@
   
 # Live Site 
 - https://jobseeker-916e0.web.app/  
-- https://simple-firebase-17e01.web.app/
+
 
 # React + Vite
 
