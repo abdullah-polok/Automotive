@@ -4,14 +4,16 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ProductDetails = () => {
     let { state } = useLocation();
+
     const { _id, name, brand_name, type, image, price, details, ratings } = state.car
 
     const notify = () => {
         toast("Added into cart Successfully")
     }
     const cartCar = state.car
+
     ///send add cart data to the database
-    fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/carts`, {
+    fetch(`https://automotive-server-aooglz8zc-abdullah-al-rahmans-projects.vercel.app/carts`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

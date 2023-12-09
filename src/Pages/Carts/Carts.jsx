@@ -5,7 +5,7 @@ const Carts = () => {
     const [carts, setCarts] = useState(loadedCart);
     const handleDelete = (id) => {
         console.log(id)
-        fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/carts/${id}`, {
+        fetch(`https://automotive-server-aooglz8zc-abdullah-al-rahmans-projects.vercel.app/carts/${id}`, {
             method: 'DELETE'
         })
             .then(res => {

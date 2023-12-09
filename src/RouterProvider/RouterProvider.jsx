@@ -30,12 +30,12 @@ const router = createBrowserRouter([
             {
                 path: '/allproduct',
                 element: <AllProducts></AllProducts>,
-                loader: () => fetch('https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/cars')
+                loader: () => fetch('https://automotive-server-aooglz8zc-abdullah-al-rahmans-projects.vercel.app/cars')
             },
             {
                 path: '/updateform/:id',
                 element: <PrivateRouter><UpdateForm></UpdateForm></PrivateRouter>,
-                loader: ({ params }) => fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/cars/${params.id}`)
+                loader: ({ params }) => fetch(`https://automotive-server-aooglz8zc-abdullah-al-rahmans-projects.vercel.app/cars/${params.id}`)
             },
             {
                 path: '/activities',
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
             {
                 path: '/carts',
                 element: <PrivateRouter><Carts></Carts></PrivateRouter>,
-                loader: () => fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/carts`)
+                loader: () => fetch(`https://automotive-server-aooglz8zc-abdullah-al-rahmans-projects.vercel.app/carts`)
             }
 
             , {

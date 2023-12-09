@@ -22,7 +22,7 @@ const UpdateForm = () => {
         console.log(newCar)
 
         ////update a specific data and store into database
-        fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/cars/${_id}`, {
+        fetch(`https://automotive-server-aooglz8zc-abdullah-al-rahmans-projects.vercel.app/cars/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

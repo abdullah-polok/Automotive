@@ -14,7 +14,7 @@ const Navber = () => {
     }
 
     useEffect(() => {
-        fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/carts`)
+        fetch(`https://automotive-server-aooglz8zc-abdullah-al-rahmans-projects.vercel.app/carts`)
             .then(res => res.json())
             .then(data => setCarts(data));
     }, [])

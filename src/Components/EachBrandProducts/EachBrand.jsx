@@ -10,7 +10,7 @@ const EachBrand = () => {
     let { state } = useLocation();
     console.log(state)
     useEffect(() => {
-        fetch(`https://automotive-server-o7fdubp9l-abdullah-al-rahmans-projects.vercel.app/cars`)
+        fetch(`https://automotive-server-aooglz8zc-abdullah-al-rahmans-projects.vercel.app/cars`)
             .then(res => res.json())
             .then(data => setCars(data));
     }, [])
