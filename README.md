@@ -1,4 +1,4 @@
-#Website Description
+# My Project Description
 
 - Used Tailwind CSS with DaisyUI
 - Used ReactJs and javascript
